@@ -6,9 +6,10 @@ VB.NETで書かれたFFTのソースコードです。"Parallel_xx"はParallel�
 
 #  使用されているFFTロジックの説明
 同じ三角関数の値を連続して使えるようにした結果、基数2のFFTのくせに基本構造では三重ループ、実装ではさらに使いまわしを増やしたため四重ループになってます。  
-基本構造でのTD_FFTの演算順は以下のようになっています
+基本構造でのTD_FFTの演算順は以下のようになっています。
 ![image1](https://github.com/huskofcrayfish/vbFFT/blob/master/resource/image1.gif)
-
+  
+    
 ソースコード中の"butterflyOffset","sameAngleCount"は以下の図を参考にしてください。
 ![image0](https://github.com/huskofcrayfish/vbFFT/blob/master/resource/image0.png)
 
