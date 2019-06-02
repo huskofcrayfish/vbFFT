@@ -7,7 +7,7 @@ Partial Public Class _vbFFT
         Dim j As Long
         Dim k As Byte
 
-        Dim inAButterflyCount As Long
+        Dim sameAngleCount As Long
         Dim butterflyOffset As Long
         Dim dataIndex0 As Long
         Dim dataIndex1 As Long
@@ -17,7 +17,7 @@ Partial Public Class _vbFFT
         Dim localCos As Double
         Dim localSin As Double
 
-        inAButterflyCount = a.Length >> 1
+        sameAngleCount = a.Length >> 1
 
         butterflyOffset = 1
 
@@ -25,7 +25,7 @@ Partial Public Class _vbFFT
 
             'j = 0
             dataIndex0 = 0
-            For i = 0 To inAButterflyCount - 1
+            For i = 0 To sameAngleCount - 1
 
                 dataIndex1 = dataIndex0 + butterflyOffset
 
@@ -44,7 +44,7 @@ Partial Public Class _vbFFT
             'j = butterflyOffset/ 2
             dataIndex0 = butterflyOffset >> 1
             'butterflyOffset= 1 の時には実行しない
-            For i = 0 To ((butterflyOffset >> 1) / butterflyOffset) * (inAButterflyCount << 1) - 1
+            For i = 0 To ((butterflyOffset >> 1) / butterflyOffset) * (sameAngleCount << 1) - 1
 
                 dataIndex1 = dataIndex0 + butterflyOffset
 
@@ -62,12 +62,12 @@ Partial Public Class _vbFFT
 
             For j = 1 To (butterflyOffset >> 1) - 1
                 dataIndex0 = j
-                deltaPoint = j * inAButterflyCount
+                deltaPoint = j * sameAngleCount
                 localCos = fftp.fcos(deltaPoint)
                 localSin = fftp.fsin(deltaPoint)
 
                 For k = 0 To 1
-                    For i = 0 To inAButterflyCount - 1
+                    For i = 0 To sameAngleCount - 1
 
                         dataIndex1 = dataIndex0 + butterflyOffset
 
@@ -88,7 +88,7 @@ Partial Public Class _vbFFT
                 Next k
             Next j
 
-            inAButterflyCount >>= 1
+            sameAngleCount >>= 1
             butterflyOffset <<= 1
         Next fftStep
     End Sub
@@ -101,7 +101,7 @@ Partial Public Class _vbFFT
         Dim j As Long
         Dim k As Long
 
-        Dim inAButterflyCount As Long
+        Dim sameAngleCount As Long
         Dim butterflyOffset As Long
         Dim dataIndex0 As Long
         Dim dataIndex1 As Long
@@ -114,14 +114,14 @@ Partial Public Class _vbFFT
 
         butterflyOffset = a.Length >> 1
 
-        inAButterflyCount = 1
+        sameAngleCount = 1
 
         For fftStep = 1 To fftp.exponent
 
             'j = 0
             dataIndex0 = 0
 
-            For i = 0 To inAButterflyCount - 1
+            For i = 0 To sameAngleCount - 1
 
                 dataIndex1 = dataIndex0 + butterflyOffset
 
@@ -140,7 +140,7 @@ Partial Public Class _vbFFT
             'j = butterflyOffset/ 2
             dataIndex0 = butterflyOffset >> 1
             'butterflyOffset= 1 の時には実行しない
-            For i = 0 To ((butterflyOffset >> 1) / butterflyOffset) * (inAButterflyCount << 1) - 1
+            For i = 0 To ((butterflyOffset >> 1) / butterflyOffset) * (sameAngleCount << 1) - 1
 
                 dataIndex1 = dataIndex0 + butterflyOffset
 
@@ -158,12 +158,12 @@ Partial Public Class _vbFFT
 
             For j = 1 To (butterflyOffset >> 1) - 1
                 dataIndex0 = j
-                deltaPoint = j * inAButterflyCount
+                deltaPoint = j * sameAngleCount
                 localCos = fftp.fcos(deltaPoint)
                 localSin = fftp.fsin(deltaPoint)
 
                 For k = 0 To 1
-                    For i = 0 To inAButterflyCount - 1
+                    For i = 0 To sameAngleCount - 1
 
                         dataIndex1 = dataIndex0 + butterflyOffset
 
@@ -184,7 +184,7 @@ Partial Public Class _vbFFT
                 Next k
             Next j
 
-            inAButterflyCount <<= 1
+            sameAngleCount <<= 1
             butterflyOffset >>= 1
         Next fftStep
     End Sub

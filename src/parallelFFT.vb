@@ -4,10 +4,10 @@ Partial Public Class _vbFFT
 
         Dim fftStep As Byte
 
-        Dim inAButterflyCount As Long
+        Dim sameAngleCount As Long
         Dim butterflyOffset As Long
 
-        inAButterflyCount = a.Length >> 1
+        sameAngleCount = a.Length >> 1
 
         butterflyOffset = 1
 
@@ -27,7 +27,7 @@ Partial Public Class _vbFFT
 
                 dataIndex0 = j
 
-                deltaPoint = j * inAButterflyCount
+                deltaPoint = j * sameAngleCount
                 localCos = fftp.fcos(deltaPoint)
                 localSin = fftp.fsin(deltaPoint)
 
@@ -39,7 +39,7 @@ Partial Public Class _vbFFT
 
                 For k = 0 To repeatFlag
 
-                    For i = 0 To inAButterflyCount - 1
+                    For i = 0 To sameAngleCount - 1
 
                         dataIndex1 = dataIndex0 + butterflyOffset
 
@@ -60,7 +60,7 @@ Partial Public Class _vbFFT
                 Next k
             End Sub)
 
-            inAButterflyCount >>= 1
+            sameAngleCount >>= 1
             butterflyOffset <<= 1
         Next fftStep
     End Sub
@@ -70,12 +70,12 @@ Partial Public Class _vbFFT
 
         Dim fftStep As Byte
 
-        Dim inAButterflyCount As Long
+        Dim sameAngleCount As Long
         Dim butterflyOffset As Long
 
         butterflyOffset = a.Length >> 1
 
-        inAButterflyCount = 1
+        sameAngleCount = 1
 
         For fftStep = 1 To fftp.exponent
             Parallel.For(0, (butterflyOffset >> 1) + 1,
@@ -92,7 +92,7 @@ Partial Public Class _vbFFT
                 Dim repeatFlag As Byte
 
                 dataIndex0 = j
-                deltaPoint = j * inAButterflyCount
+                deltaPoint = j * sameAngleCount
                 localCos = fftp.fcos(deltaPoint)
                 localSin = fftp.fsin(deltaPoint)
 
@@ -103,7 +103,7 @@ Partial Public Class _vbFFT
                 End If
 
                 For k = 0 To repeatFlag
-                    For i = 0 To inAButterflyCount - 1
+                    For i = 0 To sameAngleCount - 1
 
                         dataIndex1 = dataIndex0 + butterflyOffset
 
@@ -123,7 +123,7 @@ Partial Public Class _vbFFT
                     localCos *= (-1)
                 Next k
             End Sub)
-            inAButterflyCount <<= 1
+            sameAngleCount <<= 1
             butterflyOffset >>= 1
 
         Next fftStep
