@@ -69,20 +69,17 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\src\bitReverse.vb">
-      <Link>vbFFT\bitReverse.vb</Link>
+    <Compile Include="..\..\src\BasicFFT.vb">
+      <Link>vbFFT\BasicFFT.vb</Link>
     </Compile>
-    <Compile Include="..\..\src\parallelFFT.vb">
-      <Link>vbFFT\parallelFFT.vb</Link>
+    <Compile Include="..\..\src\Basic_bitReverse.vb">
+      <Link>vbFFT\Basic_bitReverse.vb</Link>
     </Compile>
-    <Compile Include="..\..\src\serialFFT.vb">
-      <Link>vbFFT\serialFFT.vb</Link>
+    <Compile Include="..\..\src\Basic_vbFFT.vb">
+      <Link>vbFFT\Basic_vbFFT.vb</Link>
     </Compile>
-    <Compile Include="..\..\src\setter_vbFFT.vb">
-      <Link>vbFFT\setter_vbFFT.vb</Link>
-    </Compile>
-    <Compile Include="..\..\src\vbFFT.vb">
-      <Link>vbFFT\vbFFT.vb</Link>
+    <Compile Include="..\..\src\setter_Basic_vbFFT.vb">
+      <Link>vbFFT\setter_Basic_vbFFT.vb</Link>
     </Compile>
     <Compile Include="Module1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

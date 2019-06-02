@@ -6,32 +6,16 @@ Partial Public Class _vbFFT
 
     Sub _Cal_TD_FFT(data0 As Double(), data1 As Double(), fftp As FFT_Parameters)
 
-        _bitReverse(data0, data1)
-        _TD_FFT(data0, data1, fftp)
+        _Basic_bitReverse(data0, data1)
+        _Basic_TD_FFT(data0, data1, fftp)
 
     End Sub
 
 
     Sub _Cal_FD_FFT(data0 As Double(), data1 As Double(), fftp As FFT_Parameters)
 
-        _FD_FFT(data0, data1, fftp)
-        _bitReverse(data0, data1)
-
-    End Sub
-
-
-    Sub _Cal_Parallel_TD_FFT(data0 As Double(), data1 As Double(), fftp As FFT_Parameters)
-
-        _Parallel_bitReverse(data0, data1)
-        _Parallel_TD_FFT(data0, data1, fftp)
-
-    End Sub
-
-
-    Sub _Cal_Parallel_FD_FFT(data0 As Double(), data1 As Double(), fftp As FFT_Parameters)
-
-        _Parallel_FD_FFT(data0, data1, fftp)
-        _Parallel_bitReverse(data0, data1)
+        _Basic_FD_FFT(data0, data1, fftp)
+        _Basic_bitReverse(data0, data1)
 
     End Sub
 
@@ -43,10 +27,10 @@ Partial Public Class _vbFFT
 
         tmpi = (2 ^ fftp.exponent) >> 1
 
-        ReDim fftp.fcos(tmpi >> 1)
-        ReDim fftp.fsin(tmpi >> 1)
+        ReDim fftp.fcos(tmpi)
+        ReDim fftp.fsin(tmpi)
 
-        For n = 0 To tmpi >> 1
+        For n = 0 To tmpi
             fftp.fsin(n) = Math.Sin(PI2 * (n / tmpi))
             fftp.fcos(n) = Math.Cos(PI2 * (n / tmpi))
         Next

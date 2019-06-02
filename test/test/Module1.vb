@@ -45,27 +45,6 @@ Module Module1
             'Console.WriteLine(CType(wdata0(k), Integer) & "," & CType(wdata1(k), Integer))
         Next k
 
-        vbFFT.Parallel_TD_FFT(wdata0, wdata1)
-        For k = 0 To wdata0.Length - 1
-            Console.WriteLine(wdata0(k) & "," & wdata1(k))
-        Next k
-
-        vbFFT.Parallel_TD_IFFT(wdata0, wdata1)
-        For k = 0 To wdata0.Length - 1
-            Console.WriteLine(wdata0(k) & "," & wdata1(k))
-            'Console.WriteLine(CType(wdata0(k), Integer) & "," & CType(wdata1(k), Integer))
-        Next k
-
-        vbFFT.Parallel_FD_FFT(wdata0, wdata1)
-        For k = 0 To wdata0.Length - 1
-            Console.WriteLine(wdata0(k) & "," & wdata1(k))
-        Next k
-
-        vbFFT.Parallel_FD_IFFT(wdata0, wdata1)
-        For k = 0 To wdata0.Length - 1
-            Console.WriteLine(wdata0(k) & "," & wdata1(k))
-            'Console.WriteLine(CType(wdata0(k), Integer) & "," & CType(wdata1(k), Integer))
-        Next k
 
     End Sub
 
