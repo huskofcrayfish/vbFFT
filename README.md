@@ -7,6 +7,7 @@ VB.NETで書かれたFFTのソースコードです。
 
 #  使用されているFFTロジックの説明
 同じ三角関数の値を連続して使えるようにした結果、基数2のFFTのくせに基本構造では三重ループ、実装ではさらに使いまわしを増やしたため四重ループになってます。  
+基本構造については、Branch:logical_basis で公開しています。気になる方はそちらを参照してください。  
 基本構造でのTD_FFTの演算順は以下のようになっています。
 ![image1](https://github.com/huskofcrayfish/vbFFT/blob/master/resource/image1.gif)
   
