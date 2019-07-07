@@ -38,17 +38,17 @@ Partial Public Class _vbFFT
 
     Sub _Set_FFT(data0 As Double(), data1 As Double(), fftp As FFT_Parameters)
 
-        Dim tmpi As Integer
-        Dim PI2 As Double = -fftp.inv * PI
+        Dim tmpi As Integer = (2 ^ fftp.exponent) >> 1
+        Dim PI2 As Double = (-fftp.inv * PI) / tmpi
 
-        tmpi = (2 ^ fftp.exponent) >> 1
+        tmpi >>= 1
 
-        ReDim fftp.fcos(tmpi >> 1)
-        ReDim fftp.fsin(tmpi >> 1)
+        ReDim fftp.fcos(tmpi)
+        ReDim fftp.fsin(tmpi)
 
-        For n = 0 To tmpi >> 1
-            fftp.fsin(n) = Math.Sin(PI2 * (n / tmpi))
-            fftp.fcos(n) = Math.Cos(PI2 * (n / tmpi))
+        For n = 0 To tmpi
+            fftp.fsin(n) = Math.Sin(PI2 * n)
+            fftp.fcos(n) = Math.Cos(PI2 * n)
         Next
 
         ReDim data0((2 ^ fftp.exponent) - 1)
